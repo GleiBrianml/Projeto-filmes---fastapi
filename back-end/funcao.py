@@ -64,8 +64,8 @@ def atualizar_filme(id_filme, nova_avaliacao):
         finally:
             cursor.close()
             conexao.close()
-atualizar_filme(1, 9)
 
+def deletar
 
     
 
