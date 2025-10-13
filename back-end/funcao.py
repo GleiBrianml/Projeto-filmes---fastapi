@@ -65,9 +65,21 @@ def atualizar_filme(id_filme, nova_avaliacao):
             cursor.close()
             conexao.close()
 
-def deletar
-
-    
+def deletar_filmes(id_filme):
+    conexao,cursor = conectar()
+    if conexao:
+        try:
+            cursor.execute(
+                "DELETE FROM filmes WHERE id = %s", 
+                    (id_filme,)
+                
+            )
+            conexao.commit()
+        except Exception as erro:
+            print(f'Erro ao tentar deletar o filme {erro}')
+        finally:
+            cursor.close()
+            conexao.close()
 
  
 
