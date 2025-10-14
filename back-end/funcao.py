@@ -19,7 +19,7 @@ def criar_tabela():
         finally:
             cursor.close()
             conexao.close()
-
+criar_tabela()
 def inserir_filme(titulo, genero, ano, avaliacao):
     conexao,cursor = conectar()
     if conexao:
@@ -65,7 +65,7 @@ def atualizar_filme(id_filme, nova_avaliacao):
             cursor.close()
             conexao.close()
 
-def deletar_filmes(id_filme):
+def deletar_filme(id_filme):
     conexao,cursor = conectar()
     if conexao:
         try:
@@ -82,7 +82,19 @@ def deletar_filmes(id_filme):
             conexao.close()
 
  
-
+def buscar_filme(id_filme):
+    conexao,cursor = conectar()
+    if conexao:
+        try:
+            cursor.execute(
+                "SELECT * FROM filmes WHERE id = %s", (id_filme,)
+            )
+            return cursor.fetchone()
+        except Exception as erro:
+            print(f"Erro ao buscar o filme {erro}")
+        finally:
+            cursor.close()
+            conexao.close()
 
 
 

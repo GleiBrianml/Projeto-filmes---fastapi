@@ -10,7 +10,7 @@ app = FastAPI(title="Gerenciador de Filmes")
 
 @app.get("/")
 def home():
-    return {"mensagem": "Quero café prof"}
+    return {"mensagem": "Bem-vindos ao gerenciador de filmes"}
 
 @app.post("/filmes")
 def criar_filmes(titulo:str, genero:str , ano:int , avaliacao:float):
@@ -31,3 +31,12 @@ def listar_filmes():
                 "avaliacao": linha[4]
             })
     return {"filmes":lista}
+
+@app.put("/filmes/{id_filme}")
+def update_filmes(id_filme: int, nova_avaliacao: float):
+    filme = funcao.buscar_filme(id_filme)
+    if filme:
+        funcao.atualizar_filme(id_filme, nova_avaliacao)
+        return {"mensagem": "Filme atualizado com sucesso!"}
+    else:
+        return { "erro":"Filme não encontrado"}
